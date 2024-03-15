@@ -1,0 +1,39 @@
+/*Estilos para login*/
+.logInForm {
+    max-width: 330px;
+    max-height: 324px;
+    box-shadow: 6px 9px 4px 0px rgba(0,0,0,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logInBox{
+    width: 556px; 
+    height: 58px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #D9D9D9;
+  }
+  .logInButton {
+    width: 253px; 
+    height: 53px; 
+    background-color: #003B93; 
+    color: white; 
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+  .cancelButton {
+    width: 253px; 
+    height: 53px; 
+    background-color: #E75D5D; 
+    color: white; 
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+  .logText{
+    font-size: 12px;
+  }

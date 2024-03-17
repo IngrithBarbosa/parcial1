@@ -1,86 +1,62 @@
-import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import React, { useState } from 'react';
+import { Form, Button, Card, FormLabel } from 'react-bootstrap';
+import {FormattedMessage} from "react-intl";
 
-function App() {
+function LogInForm ({ onLogin }){
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
- const [formValues, setFormValues] = useState({email:"", password:""})
- const [validationStates, setValidationStates] = useState({userState: true, passwordState: true});
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (username === 'admin' && password === 'pass') {
+      onLogin();
+    } else {
+      setError('Error de autenticación. Revise sus credenciales');
+    }
+  };
 
-const handleUserChange = ((e) => {
-  if (!validationStates.userState) {
-    validateUser();
-  }
-  setFormValues({...formValues, user: e.target.value})
-});
-
-const handlePasswordChange = ((e) => {
-  if (!validationStates.passwordState) {
-    validatePassword();
-  }
-  setFormValues({...formValues, password: e.target.value})
-});
-
-const validatePassword = () => {
-  if (formValues.password !== "pass") {
-    setValidationStates({...validationStates, passwordState: false});
-    return false;
-  } else {
-    setValidationStates({...validationStates, passwordState: true});
-    return true;
-  }
+  return (
+    <div className="loginContainer">
+      <Card className="logInForm">
+        <Form onSubmit={handleSubmit}>
+          <FormLabel>
+            <h1 className= "inicio"><FormattedMessage id="Login"/></h1>
+          </FormLabel>
+          <div>
+            <label className="texto" htmlFor="user"><FormattedMessage id="Username"/></label>
+            <br></br>
+            <input className={`logInBox ${error && 'errorBorder'}`}
+              type="user"
+              id="user"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label className="texto" htmlFor="password"><FormattedMessage id="Password"/></label>
+            <br></br>
+            <input className={`logInBox ${error && 'errorBorder'}`}
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <Button className="loginButton" type="submit">
+            <label className="textButton"><FormattedMessage id="LoginButton"/></label>
+          </Button>
+          <Button className="cancelButton">
+            <label className="textButton"><FormattedMessage id="Cancel"/></label>
+          </Button>
+        </Form>
+        {error && <p className="error">{error}</p>}
+      </Card>
+    </div>
+  );
 }
 
+export default LogInForm;
 
-const validateUser = () => {
-    if (formValues.user !== "admin") {
-        setValidationStates({...validationStates, userState: false});
-        return false;
-      } else {
-        setValidationStates({...validationStates, userState: true});
-        return true;
-      }
-}
-
-const clickSubmit = (() => {
-  const userValid = validateUser();
-  const passwordValid = validatePassword();
-  if (userValid && passwordValid) {
-    alert(JSON.stringify(formValues));
-  }
-})
-
-
-    
-
-
-return (
-
-
-  <div>
-    <h1>Inicio de sesión</h1>
-  
-    <Form>
-    <Form.Group className="logInBox" controlId="formBasicUser">
-      <Form.Label>Nombre de usuario</Form.Label>
-      <Form.Control type="user" placeholder="Enter email" onChange={handleUserChange} value={formValues.user} isInvalid = {!validationStates.userState} onBlur={validateUser}/>
-      { !validationStates.userState && <Form.Text className="text-muted">Your email should follow an established format</Form.Text>}
-    </Form.Group>
-
-    <Form.Group className="logInBox" controlId="formBasicPassword"> 
-      <Form.Label>Contraseña</Form.Label>
-      <Form.Control type="password" placeholder="Password" onChange={handlePasswordChange} value={formValues.password} isInvalid={!validationStates.passwordState} onBlur={validatePassword}/>
-      { !validationStates.passwordState && <Form.Text className="text-muted">Your password should be have numbers and letters and should be at least 9 char long</Form.Text>}
-    </Form.Group>
-    <Button variant="primary" onClick={clickSubmit} >
-      Ingresar
-    </Button>
-    <Button variant="primary" onClick={clickSubmit} >
-      Cancelar
-    </Button>
-  </Form>
-  </div>
- );
-}
-
-export default App;

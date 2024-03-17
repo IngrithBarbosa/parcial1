@@ -1,50 +1,51 @@
 import React, { useState } from "react";
-import Car from "./Car";
+import CarDetail from "./CarDetail";
+import { FormattedMessage } from "react-intl";
 
-export default function Cars() {
+function CarList({ carData }) {
+  const [selectedCar, setSelectedCar] = useState(null);
 
-    const [offers] = useState(
-        [
-            {
-                 "id": 1,
-                 "marca": "Renault",
-                 "linea": "Kangoo",
-                 "referencia": "VU Express",
-                 "modelo": 2017,
-                 "kilometraje": 93272,
-                 "color": "Blanco",
-                 "imagen": "https://github.com/Uniandes-isis2603/recursos-isis2603/blob/master/images/202410/kangoo.jpeg?raw=true"
-             },
-             {
-                 "id": 2,
-                 "marca": "Chevrolet",
-                 "linea": "Spark",
-                 "referencia": "Life",
-                 "modelo": 2018,
-                 "kilometraje": 55926,
-                 "color": "Plata",
-                 "imagen": "https://github.com/Uniandes-isis2603/recursos-isis2603/blob/master/images/202410/spark.jpeg?raw=true"
-             }
-         ]
-    )
+  const handleCarClick = (car) => {
+    setSelectedCar(car);
+  };
 
   return (
-    <div>
-      <table className="table">
-        <thead className="thead-dark">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Marca</th>
-            <th scope="col">Linea</th>
-            <th scope="col">Modelo</th>
-          </tr>
-        </thead>
-        <tbody>
-          {offers.map((e, i) => (
-            <Car key={i} offer={e} />
-          ))}
-        </tbody>
-      </table>
+    <div className="carList">
+      <div>
+        <table className="table">
+          <thead className="headerTable">
+            <tr>
+              <th className="headerTextnum" scope="col">#</th>
+              <th className="headerText" scope="col">
+                <FormattedMessage id="Brand" />
+              </th>
+              <th className="headerText" scope="col">
+                <FormattedMessage id="Line" />
+              </th>
+              <th className="headerText" scope="col">
+                <FormattedMessage id="Model" />
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {carData.map((car, index) => (
+              <tr key={index} onClick={() => handleCarClick(car)}>
+                <td className="num">{index + 1}</td>
+                <td>{car.marca}</td>
+                <td>{car.linea}</td>
+                <td>{car.modelo}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {selectedCar && (
+        <div className="cardDetail">
+          <CarDetail car={selectedCar} />
+        </div>
+      )}
     </div>
   );
-};
+}
+
+export default CarList;

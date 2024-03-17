@@ -1,22 +1,45 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import './App.css';
-import './styles.css'
+import React, { useState, useEffect } from 'react';
+import './styles.css';
 import LogInForm from './components/LogInForm';
 import CarList from './components/CarList';
-import CarDetail from './components/CarDetail';
+import Footer from './components/Footer';
+import Header from './components/Header';
+import axios from 'axios';
 
-function App() {
+const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [data, setData] = useState([]);
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/cars');
+        setData(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
-    <>
-      <BrowserRouter>
-       <Routes>
-         <Route path="/login" element={<LogInForm />} />
-         <Route path="/cars" element={<CarList />} />
-         <Route path="/cars/:carId" element={<CarDetail />} />
-       </Routes>
-     </BrowserRouter>
-    </>
+    <div className="homeScreen">
+      <div className="content">
+        <Header />
+        {!isLoggedIn ? (
+          <LogInForm onLogin={handleLogin} />
+        ) : (
+          <CarList carData={data} />
+        )}
+      </div>
+      <Footer />
+    </div>
   );
-}
+};
 
 export default App;

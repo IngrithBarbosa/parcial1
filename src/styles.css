@@ -1,39 +1,157 @@
+body {
+  font-family: Arial, Helvetica, sans-serif; 
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.homeScreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh; 
+}
+.content {
+  flex: 1; 
+}
+/*Estilos para header y footer*/
+.header{
+  width: auto;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
+.footer{
+  margin-bottom: 20px;
+}
+.encabezado{
+  margin-top: 10px;
+  text-align: left;
+  padding: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.imgHeader{
+  width: 1244px; 
+  height: 323px; 
+}
 /*Estilos para login*/
-.logInForm {
-    max-width: 330px;
-    max-height: 324px;
-    box-shadow: 6px 9px 4px 0px rgba(0,0,0,0.25);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .logInBox{
-    width: 556px; 
-    height: 58px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    background-color: #D9D9D9;
-  }
-  .logInButton {
-    width: 253px; 
-    height: 53px; 
-    background-color: #003B93; 
-    color: white; 
-    border: none;
-    cursor: pointer;
-    margin-bottom: 20px;
-    margin-top: 20px;
-  }
-  .cancelButton {
-    width: 253px; 
-    height: 53px; 
-    background-color: #E75D5D; 
-    color: white; 
-    border: none;
-    cursor: pointer;
-    margin-bottom: 20px;
-    margin-top: 20px;
-  }
-  .logText{
-    font-size: 12px;
-  }
+.inicio{
+  margin-top: 0px;
+  text-align: center;
+}
+.loginContainer{
+  height: 340px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 46px;
+}
+.logInBox{
+  width: 550px; 
+  height: 54px;
+  padding: 0px;
+  border: 1px solid #ccc;
+  background-color: #D9D9D9;
+  margin-top: 9px;
+  margin-bottom: 9px;
+}
+.loginButton {
+  width: 253px; 
+  height: 53px; 
+  background-color: #003B93; 
+  color: white; 
+  border: none;
+  cursor: pointer;
+  margin-bottom: 0px;
+  margin-top: 20px;
+  margin-right: 50px;
+}
+.cancelButton {
+  width: 253px; 
+  height: 53px; 
+  background-color: #E75D5D; 
+  color: rgb(0, 0, 0); 
+  border: none;
+  cursor: pointer;
+  margin-bottom: 0px;
+  margin-top: 20px;
+}
+.inicio{
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 32px;
+}
+.texto{
+  font-weight: bold;
+  font-size: 20px;
+}
+.textButton{
+  font-weight: bold;
+  font-size: 20px;
+}
+.error{
+  color: #CD3232;
+  font-weight: bold;
+}
+.errorBorder {
+  border-color: #CD3232; 
+}
+/*Estilos para carDetail*/
+.carList{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.cardDetail{
+  width: 425px; 
+  height: 349px;
+  background-color: #D9D9D9; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+}
+.imgCar{
+  width: 318px; 
+  height: 159px;
+}
+.tituloDetail{
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+/*Estilos para table*/
+.table{
+  width: 786px; 
+  height: 340px;
+  border-collapse: collapse;
+  margin-right: 31px;
+}
+.headerText{
+  font-weight: bold;
+  font-size: 18px;
+  text-align: left;
+  background-color: #333A40;
+  color: white;
+}
+.headerTextnum{
+  font-weight: bold;
+  font-size: 18px;
+  text-align: left;
+  background-color: #333A40;
+  color: white;
+  padding-left: 15px;
+}
+.headerTable{
+  height: 50px;
+}
+.table td {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2); 
+}
+.num{
+  font-weight: bold;
+  padding-left: 15px;
+}

@@ -1,20 +1,16 @@
 import {Card, Col} from "react-bootstrap";
-import { useState } from "react";
+import {FormattedMessage} from "react-intl";
 
-
-function CarDetail(carro) {
-
-    const [car] = useState(carro);
-
+function CarDetail(props) {
     return (
         <Col>
-            <Card >
-                <Card.Title>{car.marca}</Card.Title>
-                <Card.Img variant="top" className="img" src={car.imagen} />
-                <Card.Body >
-                    <Card.Text>Kilometraje: {car.kilometraje}</Card.Text>
-                    <Card.Text>Color: {car.color}</Card.Text>
-                    <Card.Text>Referencia: {car.referencia}</Card.Text>
+            <Card className="carDetail">
+                <Card.Title className="tituloDetail">{props.car.marca +" "+ props.car.linea}</Card.Title>
+                <Card.Img variant="top" className="imgCar" src={props.car.imagen} />
+                <Card.Body className="carText">
+                    <Card.Text><FormattedMessage id="Mileage"/>: {props.car.kilometraje}</Card.Text>
+                    <Card.Text><FormattedMessage id="Color"/>: {props.car.color}</Card.Text>
+                    <Card.Text><FormattedMessage id="Reference"/>: {props.car.referencia}</Card.Text>
                 </Card.Body>
             </Card>
         </Col>
